@@ -1,38 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#111827"
-    android:gravity="center"
-    android:padding="32dp">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Dual Camera" android:textSize="28sp" android:textColor="#FFFFFF"
-        android:textStyle="bold" android:layout_marginBottom="12dp" />
-    <TextView android:id="@+id/tvStatus"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="جاري فحص الجهاز..." android:textSize="13sp" android:textColor="#10B981"
-        android:gravity="center" android:padding="12dp" android:background="#1F2937"
-        android:layout_marginBottom="24dp" />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:background="#1F2937"
-        android:padding="20dp" android:layout_marginBottom="28dp">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="ارفع الصوت = ابدا التسجيل"
-            android:textColor="#10B981" android:textSize="15sp" android:layout_marginBottom="10dp" />
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="اخفض الصوت = وقف وحفظ في المعرض"
-            android:textColor="#EF4444" android:textSize="15sp" />
-    </LinearLayout>
-    <Button android:id="@+id/btnStart" android:layout_width="match_parent"
-        android:layout_height="56dp" android:text="تشغيل الخدمة"
-        android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold"
-        android:backgroundTint="#10B981" android:layout_marginBottom="12dp" />
-    <Button android:id="@+id/btnStop" android:layout_width="match_parent"
-        android:layout_height="56dp" android:text="ايقاف الخدمة"
-        android:textColor="#FFFFFF" android:backgroundTint="#374151" android:layout_marginBottom="24dp" />
-    <TextView android:id="@+id/tvPath" android:layout_width="match_parent"
+    android:background="#0A0A0F">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="الفيديوهات ستظهر في معرض الصور - Movies/DualCamera"
-        android:textSize="11sp" android:textColor="#6B7280" android:gravity="center" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header: Logo + Language -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DUAL"
+                    android:textColor="#00D4FF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CAMERA"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.5"/>
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinnerLang"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/spinner_bg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+        </LinearLayout>
+
+        <!-- Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/dot_idle"
+                    android:layout_marginEnd="10dp"/>
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="جاهز"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00"
+                    android:textColor="#00D4FF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Camera Mode Buttons -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvModeLabel"
+            android:text="وضع التسجيل"
+            android:textColor="#9CA3AF"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnModeFront"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="أمامية"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1A1A2E"/>
+
+            <Button
+                android:id="@+id/btnModeBack"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="خلفية"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1A1A2E"/>
+
+            <Button
+                android:id="@+id/btnModeBoth"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="الاتنين"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:backgroundTint="#00D4FF"/>
+        </LinearLayout>
+
+        <!-- Main Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="2"
+                android:layout_marginEnd="8dp"
+                android:text="تشغيل الخدمة"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:backgroundTint="#00D4FF"/>
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:text="إيقاف"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:backgroundTint="#2D2D3D"/>
+        </LinearLayout>
+
+        <!-- Voice Fingerprint Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvVoiceLabel"
+            android:text="بصمة الصوت"
+            android:textColor="#9CA3AF"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnVoiceFront"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:text="🎤 أمامية"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#1E3A5F"/>
+
+                <Button
+                    android:id="@+id/btnVoiceBack"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:text="🎤 خلفية"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#1E3A5F"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnVoiceBoth"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:text="🎤 الاتنين"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#1E3A5F"/>
+
+                <Button
+                    android:id="@+id/btnVoiceStop"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:text="🎤 وقف"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#3D1A1A"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Save Path Toggle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvSavePath"
+                android:text="مسار الحفظ: معرض الصور"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"/>
+
+            <Switch
+                android:id="@+id/switchHidden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="مخفي"
+                android:textColor="#9CA3AF"
+                android:textSize="12sp"
+                android:thumbTint="#00D4FF"
+                android:trackTint="#2D2D3D"/>
+        </LinearLayout>
+
+        <!-- Timer Setting -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvTimerLabel"
+                android:text="مؤقت: بدون حد"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"/>
+
+            <Button
+                android:id="@+id/btnSetTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="ضبط"
+                android:textSize="12sp"
+                android:textColor="#00D4FF"
+                android:backgroundTint="#1A1A2E"/>
+        </LinearLayout>
+
+        <!-- Files Button -->
+        <Button
+            android:id="@+id/btnFiles"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="📁  الملفات المسجلة"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:backgroundTint="#1A1A2E"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Lock Button -->
+        <Button
+            android:id="@+id/btnLock"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="🔐  قفل التطبيق"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:backgroundTint="#1A1A2E"/>
+
+    </LinearLayout>
+</ScrollView>
