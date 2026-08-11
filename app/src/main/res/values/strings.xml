@@ -1,2 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="app_name">Dual Camera</string></resources>
+<resources>
+    <string name="app_name">DualCamera</string>
+
+    <!-- Arabic -->
+    <string name="lang_ar_start_front">أمامية</string>
+    <string name="lang_ar_start_back">خلفية</string>
+    <string name="lang_ar_start_both">الاتنين</string>
+    <string name="lang_ar_stop">وقف</string>
+
+    <!-- English -->
+    <string name="lang_en_start_front">front</string>
+    <string name="lang_en_start_back">back</string>
+    <string name="lang_en_start_both">both</string>
+    <string name="lang_en_stop">stop</string>
+
+    <!-- Spanish -->
+    <string name="lang_es_start_front">frontal</string>
+    <string name="lang_es_start_back">trasera</string>
+    <string name="lang_es_start_both">ambas</string>
+    <string name="lang_es_stop">parar</string>
+
+    <!-- French -->
+    <string name="lang_fr_start_front">avant</string>
+    <string name="lang_fr_start_back">arriere</string>
+    <string name="lang_fr_start_both">les deux</string>
+    <string name="lang_fr_stop">arreter</string>
+
+    <!-- German -->
+    <string name="lang_de_start_front">vorne</string>
+    <string name="lang_de_start_back">hinten</string>
+    <string name="lang_de_start_both">beide</string>
+    <string name="lang_de_stop">stopp</string>
+
+    <!-- Turkish -->
+    <string name="lang_tr_start_front">on</string>
+    <string name="lang_tr_start_back">arka</string>
+    <string name="lang_tr_start_both">ikisi</string>
+    <string name="lang_tr_stop">dur</string>
+
+    <!-- Hindi -->
+    <string name="lang_hi_start_front">आगे</string>
+    <string name="lang_hi_start_back">पीछे</string>
+    <string name="lang_hi_start_both">दोनों</string>
+    <string name="lang_hi_stop">रुको</string>
+</resources>
